@@ -11,6 +11,7 @@ class LeaveRequestController extends Controller
 {
     public function index()
     {
+        $title = 'Leave Request';
         $pendingCount = LeaveRequestModel::where('status', 'pending')->count();
         $approvedCount = LeaveRequestModel::where('status', 'approved')->count();
         $rejectedCount = LeaveRequestModel::where('status', 'rejected')->count();
@@ -21,7 +22,7 @@ class LeaveRequestController extends Controller
             'approvedCount' => $approvedCount,
             'rejectedCount' => $rejectedCount,
             'canceledCount' => $canceledCount,
-        ]);
+        ], compact('title'));
     }
     public function getDataLeaveRequest()
     {
@@ -169,6 +170,7 @@ class LeaveRequestController extends Controller
 
     public function showLeaveRequestDetail($id)
     {
+        $title = 'Leave Request Detail';
         try {
             $leaveRequest = LeaveRequestModel::with([
                 'user' => function($query) {
@@ -178,7 +180,7 @@ class LeaveRequestController extends Controller
     
             return view('leave_request.leave_request_show', [
                 'leaveRequest' => $leaveRequest
-            ]);
+            ], compact('title'));
         } catch (\Exception $e) {
             \Log::error('Leave Request Detail Error: ' . $e->getMessage());
             return redirect()->route('leave-request.index')

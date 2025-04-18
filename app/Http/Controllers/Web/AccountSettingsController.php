@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Session;
 class AccountSettingsController extends Controller
 {
     public function index(){
+        $title = "Profile Settings";
         $user = Auth::user();
         $userProfile = $user->profile;
         
@@ -31,7 +32,7 @@ class AccountSettingsController extends Controller
 
         Session::put('current_device', $deviceInfo);
 
-        return view("account_settings.account_settings_index", compact('user', 'userProfile', 'deviceInfo',));
+        return view("account_settings.account_settings_index", compact('title','user', 'userProfile', 'deviceInfo',));
     }
 
     public function updatePassword(Request $request)

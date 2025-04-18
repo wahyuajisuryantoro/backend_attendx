@@ -10,8 +10,9 @@ class OfficeController extends Controller
 {
     public function index()
     {
+        $title = 'Office Location';
         $officeLocation = OfficeLocationModel::first();
-        return view("office_locations.office_locations_index", compact('officeLocation'));
+        return view("office_locations.office_locations_index", compact('title','officeLocation'));
     }
 
     public function update(Request $request)

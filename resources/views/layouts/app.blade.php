@@ -10,7 +10,7 @@
 
     <link rel="stylesheet" href="{{ asset('assets/css/styles.css') }}" />
     @yield('css')
-    <title>MatDash Bootstrap Admin</title>
+    <title>{{ $title }}</title>
 </head>
 
 <body class="link-sidebar">

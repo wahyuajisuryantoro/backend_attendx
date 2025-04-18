@@ -17,6 +17,7 @@ class EmployeeController extends Controller
 
     public function index(Request $request)
     {
+        $title = 'Employee Data';
         $totalEmployees = User::where('is_admin', 0)->count();
 
         $activeEmployees = User::where('is_admin', 0)->where('is_active', 1)->count();
@@ -38,6 +39,7 @@ class EmployeeController extends Controller
             }
         }
         return view('employee.employee-list', compact(
+            'title',
             'totalEmployees',
             'activeEmployees',
             'inactiveEmployees',
@@ -104,7 +106,8 @@ class EmployeeController extends Controller
 
     public function create()
     {
-        return view('employee.employee-create');
+        $title = 'Add Employee';
+        return view('employee.employee-create', compact('title'));
     }
 
 

@@ -15,6 +15,7 @@ class UserShiftController extends Controller
 {
     public function index(Request $request)
     {
+        $title = 'Shift Assignment';
         if ($request->ajax()) {
             $data = UserShiftModel::with(['user.profile', 'shift'])
                 ->latest()
@@ -86,7 +87,7 @@ class UserShiftController extends Controller
 
         $shifts = WorkShiftModel::where('is_active', 1)->get();
 
-        return view('user_shifts.user_shifts_index', compact('employees', 'shifts'));
+        return view('user_shifts.user_shifts_index', compact('title','employees', 'shifts'));
     }
 
     public function store(Request $request)

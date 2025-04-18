@@ -23,6 +23,7 @@ class AttendanceController extends Controller
 {
     public function index()
     {
+        $title = 'Attendance Data';
         $totalAttendances = AttendanceModel::count();
         $totalEmployees = User::where('is_admin', 0)->count();
         $onTimeCount = AttendanceModel::whereNotNull('clock_in')
@@ -43,6 +44,7 @@ class AttendanceController extends Controller
         $topCount = $topDepartmentData ? $topDepartmentData->total : 0;
 
         return view('attendance.report_attendance', compact(
+            'title',
             'totalAttendances',
             'totalEmployees',
             'onTimeCount',

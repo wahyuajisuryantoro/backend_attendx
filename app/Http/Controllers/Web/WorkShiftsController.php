@@ -12,6 +12,7 @@ class WorkShiftsController extends Controller
 {
     public function index(Request $request)
     {
+        $title = 'Shift Settings';
         if($request->ajax()) {
             $data = WorkShiftModel::latest()->get();
             return DataTables::of($data)
@@ -40,7 +41,7 @@ class WorkShiftsController extends Controller
                 ->make(true);
         }
         
-        return view('work_shifts.work_shift_index');
+        return view('work_shifts.work_shift_index', compact('title'));
     }
 
     public function store(Request $request)

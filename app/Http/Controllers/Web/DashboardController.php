@@ -17,6 +17,7 @@ class DashboardController extends Controller
 {
     public function index()
     {
+        $title = "Dashboard";
         $user = Auth::user();
 
         $pendingLeaveRequests = LeaveRequestModel::where('status', 'pending')->count();
@@ -65,6 +66,7 @@ class DashboardController extends Controller
 
 
         return view("dashboard.index", data: compact(
+            'title',
             'user',
             'pendingLeaveRequests',
             'activeShiftsCount',
